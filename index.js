@@ -110,7 +110,7 @@ export default class Carousel extends Component {
     this._clearTimer();
   }
 
-  componentWillReceiveProps({ children }) {
+  UNSAFE_componentWillReceiveProps({ children }) {
     if (!isEqual(this.props.children, children)) {
       const { currentPage } = this.state;
       this._clearTimer();
@@ -405,6 +405,7 @@ export default class Carousel extends Component {
       <View {...containerProps}>
         <ScrollView
           ref={(c) => { this.scrollView = c; }}
+          scrollEventThrottle={16}
           onScrollBeginDrag={this._onScrollBegin}
           onMomentumScrollEnd={this._onScrollEnd}
           onScroll={this._onScroll}
